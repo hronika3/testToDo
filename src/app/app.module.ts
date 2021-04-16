@@ -2,21 +2,19 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
-import { HeaderComponent } from './header/header.component';
-import { ListComponent } from './list/list.component';
-import { ElementComponent } from './element/element.component';
-import {FormsModule} from '@angular/forms';
+import { ElementModule } from './element/element.module';
+import { HeaderModule } from './header/header.module';
+import { ListModule } from './list/list.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HeaderComponent,
-    ListComponent,
-    ElementComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    ElementModule,
+    HeaderModule,
+    ListModule
   ],
   bootstrap: [AppComponent]
 })
