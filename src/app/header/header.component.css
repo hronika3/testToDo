@@ -1,0 +1,17 @@
+.header {
+  display: flex;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.inpt {
+  width: 400px;
+}
+
+.btn {
+  width: 100px;
+}
+
+#canvas {
+  margin-top: 0px;
+}

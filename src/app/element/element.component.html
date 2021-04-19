@@ -1,0 +1,20 @@
+<div class="el">
+  <li class="list list-group-item">
+    <div *ngIf="elText.maxWidth; then help else nothing"></div>
+    <ng-template #help>
+      <p class="clip"
+         title="{{elText.text}}"
+      >{{elText.text}}</p>
+    </ng-template>
+    <ng-template #nothing>
+      <p class="clip"
+      >{{elText.text}}</p>
+    </ng-template>
+  </li>
+  <span class="input-group-btn">
+    <button class="btn btn-danger"
+            type="button"
+            (click)="deleteElement.emit()"
+    >Удалить</button>
+  </span>
+</div>

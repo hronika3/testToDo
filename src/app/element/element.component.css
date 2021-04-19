@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  justify-content: left;
+  width: 410px;
+  height: 40px;
+  border-radius: 0;
+}
+
+.clip {
+  width: 800px;
+  height: 40px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.el {
+  display: flex;
+  flex-direction: row;
+  margin-top: 1%;
+}
+
+.btn {
+  width: 100px;
+  height: 40px;
+}

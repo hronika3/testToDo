@@ -1,4 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
+import {Text} from './interfaces';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,10 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 })
 export class AppComponent {
 
-  textList: Array<string> = [];
-  newList: Array<string> = [];
+  public textList: Array<Text> = [];
+  public newList: Array<Text> = [];
 
-  public sendToList(inputText: string): void {
+  public sendToList(inputText: Text): void {
     this.textList.push(inputText);
     this.newList = this.textList.filter(item => item);
     this.textList = this.newList;

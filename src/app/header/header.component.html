@@ -1,0 +1,19 @@
+<canvas #canvas id="canvas" width = "0" height = "0"></canvas>
+<div class="header">
+  <div class="row">
+    <div class="input-group">
+      <input type="text"
+             class="inpt form-control"
+             placeholder="Введите что-нибудь"
+             [(ngModel)]="inputText">
+      <span class="input-group-btn">
+
+        <button class="btn btn-default"
+                type="button"
+                (click)="add()"
+                [disabled]="!inputText"
+        >Добавить</button>
+      </span>
+    </div>
+  </div>
+</div>
