@@ -4,7 +4,7 @@
       <ul class="list-group list-group-horizontal" >
         <app-element *ngFor="let elText of textList; let i = index"
                      [elText]="elText"
-                     (deleteElement)="deleteEl(i)"
+                     (onRemoveByIndex)="removeByIndex(i)"
         ></app-element>
       </ul>
     </div>

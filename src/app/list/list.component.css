@@ -13,7 +13,7 @@
   width: 550px;
   height: calc(90vh - 105px);
 }
-
+/*поменять на класс*/
 div {
   display: flex;
   justify-content: center;

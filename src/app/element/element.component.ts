@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Text} from '../interfaces';
+import {TodoService} from '../todo.service';
 
 @Component({
   selector: 'app-element',
@@ -8,6 +9,9 @@ import {Text} from '../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementComponent {
+  constructor(public todoService: TodoService) {
+  }
+
   @Input() elText: Text;
-  @Output() deleteElement: EventEmitter<number> = new EventEmitter();
+  @Output() onRemoveByIndex: EventEmitter<number> = new EventEmitter();
 }

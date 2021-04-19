@@ -9,22 +9,18 @@ import {Text} from '../interfaces';
 })
 export class HeaderComponent {
   public inputText = '';
-  public textInfo: Text = {
-    text: '',
-    maxWidth: false
-  };
 
   @Output() sendInputText: EventEmitter<Text> = new EventEmitter();
 
   @ViewChild('canvas') public canvas: ElementRef;
   public inputTextWidth;
 
-  public add(): void {
+  public onAdd(): void {
     this.inputTextWidth = this.canvas.nativeElement.getContext('2d').measureText(this.inputText);
-    const newText: Text = {
+    this.sendInputText.emit({
       text: this.inputText,
       maxWidth: (this.inputTextWidth.width > 270)
-    };
-    this.sendInputText.emit(newText);
+    });
+    this.inputText = '';
   }
 }

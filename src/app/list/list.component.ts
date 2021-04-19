@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
 import {Text} from '../interfaces';
+import {TodoService} from '../todo.service';
 
 @Component({
   selector: 'app-list',
@@ -8,9 +9,11 @@ import {Text} from '../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListComponent {
+  constructor(private todoService: TodoService) {}
+
   @Input() textList: Array<Text>;
 
-  public deleteEl(indexEl: number): void {
-    this.textList.splice(indexEl, 1);
+  public removeByIndex(indexEl: number): void {
+    this.todoService.removeByIndex(this.textList, indexEl);
   }
 }
