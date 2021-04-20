@@ -1,20 +1,17 @@
 <div class="el">
   <li class="list list-group-item">
-    <div *ngIf="elText.maxWidth; then help else nothing"></div>
-    <ng-template #help>
-      <p class="clip"
-         title="{{elText.text}}"
-      >{{todoService.outputNumbers(elText.text)}}</p>
-    </ng-template>
-    <ng-template #nothing>
-      <p class="clip"
-      >{{todoService.outputNumbers(elText.text)}}</p>
-    </ng-template>
+    <p *ngIf="todoObj.cut"
+       class="clip"
+       title="{{todoObj.text}}"
+    >{{onlyNumbers(todoObj.text)}}</p>
+    <p  *ngIf="!todoObj.cut"
+        class="clip"
+    >{{onlyNumbers(todoObj.text)}}</p>
   </li>
   <span class="input-group-btn">
     <button class="btn btn-danger"
             type="button"
-            (click)="onRemoveByIndex.emit()"
+            (click)="onRemoveElByIndex.emit()"
     >Удалить</button>
   </span>
 </div>

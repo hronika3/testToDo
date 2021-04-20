@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {Text} from '../interfaces';
+import {ToDo} from '../interfaces';
 import {TodoService} from '../todo.service';
 
 @Component({
@@ -9,9 +9,12 @@ import {TodoService} from '../todo.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementComponent {
-  constructor(public todoService: TodoService) {
-  }
+  constructor(public todoService: TodoService) {}
 
-  @Input() elText: Text;
-  @Output() onRemoveByIndex: EventEmitter<number> = new EventEmitter();
+  @Input() todoObj: ToDo;
+  @Output() onRemoveElByIndex: EventEmitter<number> = new EventEmitter();
+
+  public onlyNumbers(todoObjText: string): string {
+    return this.todoService.onlyNumbers(todoObjText);
+  }
 }

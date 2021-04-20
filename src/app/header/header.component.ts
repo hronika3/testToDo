@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
-import {Text} from '../interfaces';
+import {ToDo} from '../interfaces';
+import {TodoService} from '../todo.service';
 
 @Component({
   selector: 'app-header',
@@ -8,19 +9,19 @@ import {Text} from '../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-  public inputText = '';
+  constructor(private todoService: TodoService) {
+  }
 
-  @Output() sendInputText: EventEmitter<Text> = new EventEmitter();
+  @Output() sendInputToDo: EventEmitter<ToDo> = new EventEmitter();
+
+  public inputToDo = '';
 
   @ViewChild('canvas') public canvas: ElementRef;
   public inputTextWidth;
 
   public onAdd(): void {
-    this.inputTextWidth = this.canvas.nativeElement.getContext('2d').measureText(this.inputText);
-    this.sendInputText.emit({
-      text: this.inputText,
-      maxWidth: (this.inputTextWidth.width > 270)
-    });
-    this.inputText = '';
+    this.inputTextWidth = this.canvas.nativeElement.getContext('2d').measureText(this.inputToDo);
+    this.sendInputToDo.emit(this.todoService.onAdd(this.inputToDo, (this.inputTextWidth.width > 270)));
+    this.inputToDo = '';
   }
 }

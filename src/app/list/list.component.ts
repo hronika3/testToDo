@@ -1,5 +1,5 @@
-import {ChangeDetectionStrategy, Component, Input} from '@angular/core';
-import {Text} from '../interfaces';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input} from '@angular/core';
+import {ToDo} from '../interfaces';
 import {TodoService} from '../todo.service';
 
 @Component({
@@ -8,12 +8,23 @@ import {TodoService} from '../todo.service';
   styleUrls: ['./list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent {
-  constructor(private todoService: TodoService) {}
+export class ListComponent implements DoCheck {
+  constructor(private todoService: TodoService,
+              private changeDetector: ChangeDetectorRef) {
+  }
 
-  @Input() textList: Array<Text>;
+  @Input() todoList: Array<ToDo> = [];
 
-  public removeByIndex(indexEl: number): void {
-    this.todoService.removeByIndex(this.textList, indexEl);
+  public trackByKey(index: number, todoObj: ToDo): number {
+    todoObj.id = index;
+    return todoObj.id;
+  }
+
+  public ngDoCheck(): void {
+    this.changeDetector.detectChanges();
+  }
+
+  public removeByIndex(todoObjId: number): void {
+    this.todoService.removeByIndex(this.todoList, todoObjId);
   }
 }

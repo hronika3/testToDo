@@ -1,21 +1,19 @@
-.list {
-  overflow-x: hidden;
-  width: 100vh;
-  margin-top: 50px;
-}
-
-.list-scrollbar {
-  display: flex;
-  justify-content: left;
-  margin-right: 0;
-  position: fixed;
-  overflow-y: auto;
-  width: 550px;
-  height: calc(90vh - 105px);
-}
-/*поменять на класс*/
-div {
+.full-width {
   display: flex;
   justify-content: center;
 }
+
+.list-scrollbar {
+  overflow-x: hidden;
+  margin-top: 45px;
+  display: flex;
+  justify-content: left;
+  margin-right: 0;
+  margin-left: 50px;
+  position: fixed;
+  overflow-y: auto;
+  width: 550px;
+  height: calc(90vh - 99px);
+}
+
 

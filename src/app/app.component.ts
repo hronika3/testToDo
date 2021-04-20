@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Text} from './interfaces';
+import {ToDo} from './interfaces';
+import {TodoService} from './todo.service';
 
 @Component({
   selector: 'app-root',
@@ -8,13 +9,12 @@ import {Text} from './interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
+  constructor(private todoService: TodoService) {
+  }
 
-  public textList: Array<Text> = [];
-  public newList: Array<Text> = [];
+  public todoList: Array<ToDo> = [];
 
-  public sendToList(inputText: Text): void {
-    this.textList.push(inputText);
-    this.newList = this.textList.filter(item => item);
-    this.textList = this.newList;
+  public addToList(inputToDo: ToDo): void {
+    this.todoService.addToList(this.todoList, inputToDo);
   }
 }

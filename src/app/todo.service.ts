@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Text} from './interfaces';
+import {ToDo} from './interfaces';
 import {isNumeric} from 'rxjs/internal-compatibility';
 
 @Injectable({
@@ -7,21 +7,33 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 })
 export class TodoService {
 
-  constructor() {
+  public removeByIndex(textList: Array<ToDo>, textObjId: number): void {
+    textList.splice(textObjId, 1);
   }
 
-  public removeByIndex(textList: Array<Text>, indexEl: number): void {
-    textList.splice(indexEl, 1);
-  }
-
-  public onAdd(inputTextWidth: number, inputText: string,): Text {
+  public onAdd(inputText: string, inputTextWidth: boolean): ToDo {
     return {
       text: inputText,
-      maxWidth: (inputTextWidth > 270)
+      cut: inputTextWidth
     };
   }
 
-  public outputNumbers(text: string): string {
-    return text.split('').filter(item => (isNumeric(item) || item === ' ')).join('');
+  public onlyNumbers(todoObjText: string): string {
+    let haveNumber = false;
+    const outputString = todoObjText.split('').filter(item => {
+      if (isNumeric(item)) {
+          haveNumber = true;
+          return item;
+      }
+      if (item === ' ') {
+        return item;
+      }
+    }).join('');
+    return haveNumber ? outputString : 'Цифр не обнаружено';
+  }
+
+  public addToList(todoList: Array<ToDo>, inputText: ToDo): Array<ToDo> {
+    todoList.push(inputText);
+    return todoList;
   }
 }

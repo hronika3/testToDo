@@ -1,5 +1,5 @@
-export interface Text {
+export interface ToDo {
   text: string;
-  maxWidth: boolean;
-  id?: string;
+  cut: boolean;
+  id?: number;
 }
