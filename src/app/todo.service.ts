@@ -1,39 +1,37 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {ToDo} from './interfaces';
-import {isNumeric} from 'rxjs/internal-compatibility';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TodoService {
+  private todoList: Array<ToDo> = [];
+  private counterId = 0;
+  public notifyResponseEvent: EventEmitter<string> = new EventEmitter();
 
-  public removeByIndex(textList: Array<ToDo>, textObjId: number): void {
-    textList.splice(textObjId, 1);
+  public notifyResponse(response: string): void {
+    this.notifyResponseEvent.emit(response);
   }
 
-  public onAdd(inputText: string, inputTextWidth: boolean): ToDo {
-    return {
+  public removeToDoByIndex(textObjId: number): void {
+    const index = this.todoList.findIndex(todoObj => todoObj.id === textObjId);
+    if (index !== -1) {
+      this.todoList.splice(index, 1);
+    } else {
+      console.log('Element not found');
+    }
+  }
+
+  public addToList(inputText: string, inputTextWidth: boolean): void {
+    this.todoList.push({
       text: inputText,
-      cut: inputTextWidth
-    };
+      cut: inputTextWidth,
+      id: this.counterId++
+    });
+    this.notifyResponse('add');
   }
 
-  public onlyNumbers(todoObjText: string): string {
-    let haveNumber = false;
-    const outputString = todoObjText.split('').filter(item => {
-      if (isNumeric(item)) {
-          haveNumber = true;
-          return item;
-      }
-      if (item === ' ') {
-        return item;
-      }
-    }).join('');
-    return haveNumber ? outputString : 'Цифр не обнаружено';
-  }
-
-  public addToList(todoList: Array<ToDo>, inputText: ToDo): Array<ToDo> {
-    todoList.push(inputText);
-    return todoList;
+  public getToDoList(): Array<ToDo> {
+    let copyToDoList: Array<ToDo>;
+    copyToDoList = this.todoList;
+    return copyToDoList;
   }
 }

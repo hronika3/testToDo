@@ -1,5 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, EventEmitter, Output, ViewChild} from '@angular/core';
-import {ToDo} from '../interfaces';
+import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
 import {TodoService} from '../todo.service';
 
 @Component({
@@ -12,16 +11,14 @@ export class HeaderComponent {
   constructor(private todoService: TodoService) {
   }
 
-  @Output() sendInputToDo: EventEmitter<ToDo> = new EventEmitter();
-
   public inputToDo = '';
 
   @ViewChild('canvas') public canvas: ElementRef;
   public inputTextWidth;
 
-  public onAdd(): void {
+  public addToList(): void {
     this.inputTextWidth = this.canvas.nativeElement.getContext('2d').measureText(this.inputToDo);
-    this.sendInputToDo.emit(this.todoService.onAdd(this.inputToDo, (this.inputTextWidth.width > 270)));
+    this.todoService.addToList(this.inputToDo, this.inputTextWidth);
     this.inputToDo = '';
   }
 }

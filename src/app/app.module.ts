@@ -6,14 +6,14 @@ import { HeaderModule } from './header/header.module';
 import { ListModule } from './list/list.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    HeaderModule,
-    ListModule
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent
+    ],
+    imports: [
+        BrowserModule,
+        HeaderModule,
+        ListModule
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule { }

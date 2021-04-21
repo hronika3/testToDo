@@ -3,10 +3,10 @@
     <p *ngIf="todoObj.cut"
        class="clip"
        title="{{todoObj.text}}"
-    >{{onlyNumbers(todoObj.text)}}</p>
+    >{{todoObj.text | onlyNumbers}}</p>
     <p  *ngIf="!todoObj.cut"
         class="clip"
-    >{{onlyNumbers(todoObj.text)}}</p>
+    >{{todoObj.text | onlyNumbers}}</p>
   </li>
   <span class="input-group-btn">
     <button class="btn btn-danger"

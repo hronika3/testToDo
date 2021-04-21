@@ -1,6 +1,7 @@
-import {ChangeDetectionStrategy, ChangeDetectorRef, Component, DoCheck, Input} from '@angular/core';
+import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
 import {ToDo} from '../interfaces';
 import {TodoService} from '../todo.service';
+import {Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-list',
@@ -8,23 +9,33 @@ import {TodoService} from '../todo.service';
   styleUrls: ['./list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ListComponent implements DoCheck {
+export class ListComponent implements OnInit, OnDestroy {
   constructor(private todoService: TodoService,
               private changeDetector: ChangeDetectorRef) {
   }
 
-  @Input() todoList: Array<ToDo> = [];
+  public todoList: Array<ToDo> = [];
+  public addSub: Subscription;
+
+
+  public ngOnInit(): void {
+    this.todoList = this.todoService.getToDoList();
+    this.addSub = this.todoService.notifyResponseEvent.subscribe(() => {
+      this.changeDetector.markForCheck();
+    });
+  }
 
   public trackByKey(index: number, todoObj: ToDo): number {
-    todoObj.id = index;
     return todoObj.id;
   }
 
-  public ngDoCheck(): void {
-    this.changeDetector.detectChanges();
+  public removeByIndex(todoObjId: number): void {
+    this.todoService.removeToDoByIndex(todoObjId);
   }
 
-  public removeByIndex(todoObjId: number): void {
-    this.todoService.removeByIndex(this.todoList, todoObjId);
+  public ngOnDestroy(): void {
+    if (this.addSub) {
+      this.addSub.unsubscribe();
+    }
   }
 }
