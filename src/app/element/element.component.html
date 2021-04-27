@@ -1,17 +1,21 @@
 <div class="el">
   <li class="list list-group-item">
-    <p *ngIf="todoObj.cut"
-       class="clip"
-       title="{{todoObj.text}}"
-    >{{todoObj.text | onlyNumbers}}</p>
-    <p  *ngIf="!todoObj.cut"
-        class="clip"
-    >{{todoObj.text | onlyNumbers}}</p>
+    <ng-container  *ngIf="todoObj.cut">
+      <p class="clip"
+         title="{{todoObj.text | onlyNumbers}}"
+      >{{todoObj.text | onlyNumbers}}</p>
+    </ng-container>
+    <ng-container  *ngIf="!todoObj.cut">
+      <div class="clip0">
+        <p class="clip"
+        >{{todoObj.text | onlyNumbers}}</p>
+      </div>
+    </ng-container>
   </li>
   <span class="input-group-btn">
     <button class="btn btn-danger"
             type="button"
-            (click)="onRemoveElByIndex.emit()"
+            (click)="todoObjRemove.emit(null)"
     >Удалить</button>
   </span>
 </div>

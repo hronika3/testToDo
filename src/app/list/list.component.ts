@@ -17,7 +17,6 @@ export class ListComponent implements OnInit, OnDestroy {
   public todoList: Array<ToDo> = [];
   public addSub: Subscription;
 
-
   public ngOnInit(): void {
     this.todoList = this.todoService.getToDoList();
     this.addSub = this.todoService.notifyResponseEvent.subscribe(() => {

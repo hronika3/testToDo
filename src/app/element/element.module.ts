@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ElementComponent} from './element.component';
 import {OnlyNumbersPipe} from '../pipes/only-numbers.pipe';
+import {FormsModule} from '@angular/forms';
 
 
 @NgModule({
@@ -10,10 +11,12 @@ import {OnlyNumbersPipe} from '../pipes/only-numbers.pipe';
     OnlyNumbersPipe
   ],
   exports: [
-    ElementComponent
+    ElementComponent,
+    OnlyNumbersPipe
   ],
   imports: [
-    CommonModule
+      CommonModule,
+      FormsModule
   ]
 })
 export class ElementModule { }

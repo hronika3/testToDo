@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {ListComponent} from './list.component';
 import {ElementModule} from '../element/element.module';
-import {TodoService} from '../todo.service';
 
 
 @NgModule({
@@ -10,13 +9,12 @@ import {TodoService} from '../todo.service';
     ListComponent
   ],
   exports: [
-    ListComponent,
+    ListComponent
   ],
   imports: [
     CommonModule,
     ElementModule
-  ],
-  providers: [TodoService]
+  ]
 })
 export class ListModule {
 }

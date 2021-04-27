@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {HeaderComponent} from './header.component';
 import {FormsModule} from '@angular/forms';
-import {TodoService} from '../todo.service';
 
 
 @NgModule({
@@ -13,8 +12,7 @@ import {TodoService} from '../todo.service';
   ],
   imports: [
     FormsModule
-  ],
-  providers: [TodoService]
+  ]
 })
 export class HeaderModule {
 }

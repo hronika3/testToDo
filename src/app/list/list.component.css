@@ -8,6 +8,7 @@
   margin-top: 45px;
   display: flex;
   justify-content: left;
+  flex-direction: column;
   margin-right: 0;
   margin-left: 50px;
   position: fixed;

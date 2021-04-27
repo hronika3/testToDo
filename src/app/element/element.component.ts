@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {ToDo} from '../interfaces';
 
 @Component({
@@ -7,7 +7,14 @@ import {ToDo} from '../interfaces';
   styleUrls: ['./element.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ElementComponent {
+export class ElementComponent implements OnInit{
   @Input() todoObj: ToDo;
-  @Output() onRemoveElByIndex: EventEmitter<symbol> = new EventEmitter();
+  @Output() todoObjRemove = new EventEmitter<null>();
+
+  public title = '';
+  public ngOnInit(): void {
+    if (this.todoObj.cut) {
+      this.title = this.todoObj.text;
+    }
+  }
 }

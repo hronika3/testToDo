@@ -23,15 +23,13 @@ export class TodoService {
   public addToList(inputText: string, inputTextWidth: boolean): void {
     this.todoList.push({
       text: inputText,
-      cut: inputTextWidth,
+      cut: (inputTextWidth),
       id: this.counterId++
     });
     this.notifyResponse('add');
   }
 
   public getToDoList(): Array<ToDo> {
-    let copyToDoList: Array<ToDo>;
-    copyToDoList = this.todoList;
-    return copyToDoList;
+    return this.todoList;
   }
 }

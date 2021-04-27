@@ -7,8 +7,10 @@
   border-radius: 0;
 }
 
-.clip {
-  width: 400px;
+
+.clip0 {
+  width: max-content;
+  max-width: 400px;
   height: 20px;
   white-space: pre;
   overflow: hidden;

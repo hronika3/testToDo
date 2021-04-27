@@ -1,9 +1,9 @@
 <div class="full-width">
   <div class="list-scrollbar">
-    <ul class="list-group list-group-horizontal" >
+    <ul class="list-group list-group-horizontal">
       <app-element *ngFor="let todoObj of this.todoList; trackBy: trackByKey"
                    [todoObj]="todoObj"
-                   (onRemoveElByIndex)="removeByIndex(todoObj.id)"
+                   (todoObjRemove)="removeByIndex(todoObj.id)"
       ></app-element>
     </ul>
   </div>
