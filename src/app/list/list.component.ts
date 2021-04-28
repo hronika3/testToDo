@@ -15,11 +15,19 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public todoList: Array<ToDo> = [];
-  public addSub: Subscription;
+  public filter: boolean = false;
+  public filterString: string = '';
+  private addSub: Subscription;
+  private filterSub: Subscription;
 
   public ngOnInit(): void {
     this.todoList = this.todoService.getToDoList();
     this.addSub = this.todoService.notifyResponseEvent.subscribe(() => {
+      this.changeDetector.markForCheck();
+    });
+    this.filterSub = this.todoService.filterResponseEvent.subscribe((response) => {
+      this.filter = response.filterOn;
+      this.filterString = response.filterString;
       this.changeDetector.markForCheck();
     });
   }
@@ -34,6 +42,9 @@ export class ListComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     if (this.addSub) {
+      this.addSub.unsubscribe();
+    }
+    if (this.filterSub) {
       this.addSub.unsubscribe();
     }
   }

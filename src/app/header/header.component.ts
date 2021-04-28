@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, ElementRef, ViewChild} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {TodoService} from '../todo.service';
 
 @Component({
@@ -8,19 +8,27 @@ import {TodoService} from '../todo.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeaderComponent {
-  constructor(private todoService: TodoService,
-              private host: ElementRef) {
+  constructor(private todoService: TodoService) {
   }
-
   public inputToDo = '';
-
-  @ViewChild('canvas') public canvas: ElementRef;
-  public inputTextWidth = 0;
+  public inputFilter = '';
+  public filterOn = true;
+  public filterButton = 'Фильтровать';
 
   public addToList(): void {
-    this.inputTextWidth = this.canvas.nativeElement.getContext('2d').measureText(this.inputToDo).width;
-    const cut = (this.inputTextWidth > 263);
-    this.todoService.addToList(this.inputToDo, cut);
+    this.todoService.addToList(this.inputToDo);
     this.inputToDo = '';
+  }
+
+  public filterList(): void {
+    this.filterOn = !this.filterOn;
+    if(!this.filterOn){
+      this.filterButton = 'Отмена';
+    }
+    else {
+      this.filterButton = 'Фильтровать';
+      this.inputFilter = '';
+    }
+    this.todoService.filterToDo(this.inputFilter);
   }
 }

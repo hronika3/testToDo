@@ -1,6 +1,12 @@
 export interface ToDo {
   text: string;
-  cut: boolean;
   id: number;
 }
+
+export interface Filter {
+  filterString: string;
+  filterOn: boolean;
+}
+
+
 

@@ -1,16 +1,11 @@
 <div class="el">
   <li class="list list-group-item">
-    <ng-container  *ngIf="todoObj.cut">
-      <p class="clip"
-         title="{{todoObj.text | onlyNumbers}}"
-      >{{todoObj.text | onlyNumbers}}</p>
-    </ng-container>
-    <ng-container  *ngIf="!todoObj.cut">
-      <div class="clip0">
-        <p class="clip"
-        >{{todoObj.text | onlyNumbers}}</p>
-      </div>
-    </ng-container>
+    <div>
+      <p class="clip0"
+         appCutTitle
+         title=""
+      >{{todoObj.text}}</p>
+    </div>
   </li>
   <span class="input-group-btn">
     <button class="btn btn-danger"

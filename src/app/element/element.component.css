@@ -9,8 +9,7 @@
 
 
 .clip0 {
-  width: max-content;
-  max-width: 400px;
+  max-width: 370px;
   height: 20px;
   white-space: pre;
   overflow: hidden;

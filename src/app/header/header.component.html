@@ -14,5 +14,19 @@
         >Добавить</button>
       </span>
     </div>
+    <div class="input-group" id="filter">
+      <input type="text"
+             class="inpt form-control"
+             placeholder="Введите что-нибудь"
+             [(ngModel)]="inputFilter"
+             [disabled]="!filterOn">
+      <span class="input-group-btn">
+        <button class="btn btn-default"
+                type="button"
+                (click)="filterList()"
+                [disabled]="!inputFilter"
+        >{{filterButton}}</button>
+      </span>
+    </div>
   </div>
 </div>
