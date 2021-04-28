@@ -4,13 +4,13 @@ import {AfterContentInit, Directive, ElementRef} from '@angular/core';
   selector: '[appCutTitle]'
 })
 export class CutTitleDirective implements AfterContentInit {
-  constructor(private host: ElementRef) {
+  constructor(private element: ElementRef) {
   }
 
   public ngAfterContentInit(): void {
-    const width = getComputedStyle(this.host.nativeElement);
-    if (this.host.nativeElement.offsetWidth >= parseInt(width.maxWidth, 10)) {
-      this.host.nativeElement.attributes.title.value = this.host.nativeElement.innerText;
+    const elementStyle = getComputedStyle(this.element.nativeElement);
+    if (this.element.nativeElement.offsetWidth >= parseInt(elementStyle.maxWidth, 10)) {
+      this.element.nativeElement.attributes.title.value = this.element.nativeElement.innerText;
     }
   }
 }

@@ -12,6 +12,7 @@ export class HeaderComponent {
   }
   public inputToDo = '';
   public inputFilter = '';
+
   public filterOn = true;
   public filterButton = 'Фильтровать';
 
@@ -23,7 +24,7 @@ export class HeaderComponent {
   public filterList(): void {
     this.filterOn = !this.filterOn;
     if(!this.filterOn){
-      this.filterButton = 'Отмена';
+      this.filterButton = 'Сбросить';
     }
     else {
       this.filterButton = 'Фильтровать';

@@ -4,9 +4,8 @@ import {Filter, ToDo} from './interfaces';
 @Injectable()
 export class TodoService {
   private todoList: Array<ToDo> = [];
-  private filteredToDo: Array<ToDo> = [];
   private counterId = 0;
-  public filtered = false;
+  public filterOn = false;
   public notifyResponseEvent: EventEmitter<string> = new EventEmitter();
   public filterResponseEvent: EventEmitter<Filter> = new EventEmitter();
 
@@ -35,18 +34,15 @@ export class TodoService {
   }
 
   public filterToDo(inputFilter: string): void {
-    this.filtered = !this.filtered;
+    this.filterOn = !this.filterOn;
     let filterObject: Filter = {
       filterString: inputFilter,
-      filterOn: this.filtered
+      filterOn: this.filterOn
     }
     this.filterResponse(filterObject);
   }
 
   public getToDoList(): Array<ToDo> {
-    if(this.filtered){
-      return this.filteredToDo;
-    }
     return this.todoList;
   }
 }

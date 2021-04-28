@@ -15,9 +15,10 @@ export class ListComponent implements OnInit, OnDestroy {
   }
 
   public todoList: Array<ToDo> = [];
-  public filter: boolean = false;
-  public filterString: string = '';
   private addSub: Subscription;
+
+  public filter = false;
+  public filterString = '';
   private filterSub: Subscription;
 
   public ngOnInit(): void {
@@ -45,7 +46,7 @@ export class ListComponent implements OnInit, OnDestroy {
       this.addSub.unsubscribe();
     }
     if (this.filterSub) {
-      this.addSub.unsubscribe();
+      this.filterSub.unsubscribe();
     }
   }
 }

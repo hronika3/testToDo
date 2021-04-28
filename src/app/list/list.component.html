@@ -1,7 +1,7 @@
 <div class="full-width">
   <div class="list-scrollbar">
     <ul class="list-group list-group-horizontal">
-      <app-element *ngFor="let todoObj of this.todoList | filterToDo:filterString:filter; trackBy: trackByKey"
+      <app-element *ngFor="let todoObj of this.todoList | onlyNumbersArray | filterToDo:filterString:filter; trackBy: trackByKey"
                    [todoObj]="todoObj"
                    (todoObjRemove)="removeByIndex(todoObj.id)"
       ></app-element>

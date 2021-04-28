@@ -9,8 +9,8 @@ import {CutTitleDirective} from '../directives/cut-title.directive';
 @NgModule({
   declarations: [
     ElementComponent,
-    OnlyNumbersPipe,
-    CutTitleDirective
+    CutTitleDirective,
+    OnlyNumbersPipe
   ],
   exports: [
     ElementComponent,
