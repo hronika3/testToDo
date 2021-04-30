@@ -1,0 +1,15 @@
+<div >
+  <input type="text"
+         class="input form-control"
+         placeholder="Введите что-нибудь"
+         [ngModel]="inputString"
+         (ngModelChange)="inputStringChange.emit($event)"
+         [disabled]="inputDisabled">
+  <span class="input-group-btn">
+    <button class="btn btn-default"
+            type="button"
+            (click)="this.emitInputString.emit(this.inputString);"
+            [disabled]="!inputString"
+    >{{inputButtonName}}</button>
+  </span>
+</div>

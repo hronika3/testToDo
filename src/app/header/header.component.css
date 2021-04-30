@@ -3,16 +3,6 @@
   justify-content: center;
   margin-top: 10vh;
 }
-
-.inpt {
-  width: 400px;
-  margin-left: 20px;
-}
-
-.btn {
-  width: 100px;
-}
-
-#filter {
+.filter {
   margin-top: 10px;
 }

@@ -1,32 +1,16 @@
-<canvas #canvas id="canvas" width = "0" height = "0"></canvas>
 <div class="header">
   <div class="row">
     <div class="input-group">
-      <input type="text"
-             class="inpt form-control"
-             placeholder="Введите что-нибудь"
-             [(ngModel)]="inputToDo">
-      <span class="input-group-btn">
-        <button class="btn btn-default"
-                type="button"
-                (click)="addToList()"
-                [disabled]="!inputToDo"
-        >Добавить</button>
-      </span>
+      <app-header-input [(inputString)]="inputToDo"
+                        (emitInputString)="addToList($event)"
+      ></app-header-input>
     </div>
-    <div class="input-group" id="filter">
-      <input type="text"
-             class="inpt form-control"
-             placeholder="Фильтер"
-             [(ngModel)]="inputFilter"
-             [disabled]="!filterOn">
-      <span class="input-group-btn">
-        <button class="btn btn-default"
-                type="button"
-                (click)="filterList()"
-                [disabled]="!inputFilter"
-        >{{filterButton}}</button>
-      </span>
+    <div class="filter input-group">
+      <app-header-input [(inputString)]="inputFilter"
+                        [inputDisabled]="filterOn"
+                        [inputButtonName]="filterButton"
+                        (emitInputString)="filterList($event)"
+      ></app-header-input>
     </div>
   </div>
 </div>

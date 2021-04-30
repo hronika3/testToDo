@@ -10,26 +10,26 @@ import {TodoService} from '../todo.service';
 export class HeaderComponent {
   constructor(private todoService: TodoService) {
   }
-  public inputToDo = '';
-  public inputFilter = '';
+  public inputToDo: string = '';
 
-  public filterOn = true;
-  public filterButton = 'Фильтровать';
+  public inputFilter: string = '';
+  public filterOn: boolean = false;
+  public filterButton: string = 'Фильтровать';
 
-  public addToList(): void {
-    this.todoService.addToList(this.inputToDo);
+  public addToList(inputToDo: string): void {
+    this.todoService.addToList(inputToDo);
     this.inputToDo = '';
   }
 
-  public filterList(): void {
+  public filterList(inputFilter): void {
     this.filterOn = !this.filterOn;
-    if(!this.filterOn){
+    if(this.filterOn){
       this.filterButton = 'Сбросить';
     }
     else {
       this.filterButton = 'Фильтровать';
       this.inputFilter = '';
     }
-    this.todoService.filterToDo(this.inputFilter);
+    this.todoService.filterToDo(inputFilter);
   }
 }
