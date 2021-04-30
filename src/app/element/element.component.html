@@ -4,13 +4,13 @@
       <p class="clip0"
          appCutTitle
          title=""
-      >{{todoObj.text}}</p>
+      >{{todoObj.text | onlyNumbers}}</p>
     </div>
   </li>
   <span class="input-group-btn">
     <button class="btn btn-danger"
             type="button"
-            (click)="todoObjRemove.emit(null)"
+            (click)="todoObjRemove.emit()"
     >Удалить</button>
   </span>
 </div>

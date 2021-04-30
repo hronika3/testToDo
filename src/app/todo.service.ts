@@ -1,22 +1,22 @@
 import {EventEmitter, Injectable} from '@angular/core';
-import {Filter, ToDo} from './interfaces';
+import {IFilter, IToDo} from './interfaces';
 
 @Injectable()
 export class TodoService {
-  private todoList: Array<ToDo> = [];
+  private todoList: Array<IToDo> = [];
   private counterId = 0;
   public filterOn = false;
   public notifyResponseEvent: EventEmitter<string> = new EventEmitter();
-  public filterResponseEvent: EventEmitter<Filter> = new EventEmitter();
+  public filterResponseEvent: EventEmitter<IFilter> = new EventEmitter();
 
-  public notifyResponse(response: string): void {
+  public notifyResponse(response: string): void {  // addNotify
     this.notifyResponseEvent.emit(response);
   }
-  public filterResponse(response: Filter): void {
+  public filterResponse(response: IFilter): void {
     this.filterResponseEvent.emit(response);
   }
 
-  public removeToDoByIndex(textObjId: number): void {
+  public removeToDoByIndex(textObjId: number): void {    // removeToDoById
     const index = this.todoList.findIndex(todoObj => todoObj.id === textObjId);
     if (index !== -1) {
       this.todoList.splice(index, 1);
@@ -35,14 +35,14 @@ export class TodoService {
 
   public filterToDo(inputFilter: string): void {
     this.filterOn = !this.filterOn;
-    let filterObject: Filter = {
+    let filterObject: IFilter = {
       filterString: inputFilter,
       filterOn: this.filterOn
     }
     this.filterResponse(filterObject);
   }
 
-  public getToDoList(): Array<ToDo> {
+  public getToDoList(): Array<IToDo> {
     return this.todoList;
   }
 }

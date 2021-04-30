@@ -1,9 +1,9 @@
-export interface ToDo {
+export interface IToDo { // IToDo
   text: string;
   id: number;
 }
 
-export interface Filter {
+export interface IFilter {
   filterString: string;
   filterOn: boolean;
 }

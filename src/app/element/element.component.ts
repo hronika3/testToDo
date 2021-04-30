@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
-import {ToDo} from '../interfaces';
+import {IToDo} from '../interfaces';
 
 @Component({
   selector: 'app-element',
@@ -8,6 +8,6 @@ import {ToDo} from '../interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ElementComponent{
-  @Input() todoObj: ToDo;
-  @Output() todoObjRemove = new EventEmitter<null>()
+  @Input() todoObj: IToDo;
+  @Output() todoObjRemove = new EventEmitter<void>();
 }

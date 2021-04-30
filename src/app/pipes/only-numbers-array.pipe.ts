@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {ToDo} from '../interfaces';
+import {IToDo} from '../interfaces';
 import {isNumeric} from 'rxjs/internal-compatibility';
 
 @Pipe({
@@ -8,7 +8,7 @@ import {isNumeric} from 'rxjs/internal-compatibility';
 })
 export class OnlyNumbersArrayPipe implements PipeTransform {
 
-  transform(todoList: ToDo[]): ToDo[] {
+  transform(todoList: IToDo[]): IToDo[] {
     let tempToDoList = JSON.parse(JSON.stringify(todoList))
     tempToDoList.map((item) => {
       let outputString = '';

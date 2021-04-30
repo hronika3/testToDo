@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
-import {ToDo} from '../interfaces';
+import {IToDo} from '../interfaces';
 import {TodoService} from '../todo.service';
 import {Subscription} from 'rxjs';
 
@@ -14,16 +14,17 @@ export class ListComponent implements OnInit, OnDestroy {
               private changeDetector: ChangeDetectorRef) {
   }
 
-  public todoList: Array<ToDo> = [];
+  public todoList: Array<IToDo> = [];
   private addSub: Subscription;
 
-  public filter = false;
-  public filterString = '';
+  public filter: boolean = false;
+  public filterString: string = '';
   private filterSub: Subscription;
 
   public ngOnInit(): void {
     this.todoList = this.todoService.getToDoList();
     this.addSub = this.todoService.notifyResponseEvent.subscribe(() => {
+
       this.changeDetector.markForCheck();
     });
     this.filterSub = this.todoService.filterResponseEvent.subscribe((response) => {
@@ -33,7 +34,7 @@ export class ListComponent implements OnInit, OnDestroy {
     });
   }
 
-  public trackByKey(index: number, todoObj: ToDo): number {
+  public trackByKey(index: number, todoObj: IToDo): number {
     return todoObj.id;
   }
 
